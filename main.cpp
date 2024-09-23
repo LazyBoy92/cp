@@ -5,5 +5,7 @@ int main()
 {
     int t,n,m;
 
+    int arr;
+
 
 }
