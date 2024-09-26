@@ -1,52 +1,65 @@
-#include <bits/stdc++.h>
-
+#include<iostream>
+#include<vector>
+#define limit 1000000
 using namespace std;
-int main()
-{
-    int t,n,m;
-    
-    string player[81];
-    int arr[6][6];
-    int tmp[5];
 
+int position[limit];
 
+void Sieve(){
 
-    cin >> t;
+    for (int i = 2; i <= limit; i++)
+    {
+        position[1] = -1, position[0] = -1;
 
-    string id;
+        if(position[i] == 0){
+            position[i] = i;
 
-    for (int i = 1; i <= t; i++){
-        cin >> n >> m;
-        cin >> id;
-
-        for(int j = 1; j <= n;j++){
-            cin >> player[j] >> arr[j][1] >> arr[j][2] >> arr[j][3];
-            if(player[j] == id){
-                tmp[1] = arr[j][1];
-                tmp[2] = arr[j][2];
-                tmp[3] = arr[j][3];
+            int j = i*2
+            for (; j <= limit; j+=i){
+                 position[j] = -1;    
             }
-        }  
+            
+        }
+    }    
+}
 
-    int x = 1;
-   for (int j = 1; j <= n; j++)
-   {
-     if(arr[j][3] > tmp[3]){
-        x++;
-     }else if(arr[j][3] == tmp[3] && arr[j][2] > tmp[2]){
-        x++;
-     }else if(arr[j][3] == tmp[3] && arr[j][2] == tmp[2] && arr[j][1] > tmp[1]){
-        x++;
-     }
-   }
+
+
+int main(){
+
+
+Sieve();
+
+vector<int> x;
+
+for (int i = 0; i < 77777; i++)
+{
+    if(position[i] > 0){
+        x.push_back(position[i]);
+    }
     
-    if(x <= m){
-        cout << "YA"<<endl;
-    }else{
-        cout << "TIDAK" <<endl;
-    }
+}
 
-    }
-   
+int n,t[77777];
+cin >> n;
+for (int l = 0; l < n; l++)
+{
+   cin >> t[l];
+}
+
+for (int p = 0; p < n; p++)
+{
+  cout << x[t[p]-1] <<endl;
+}
+
+
+
+
+
+
+
+
+
+
 
 }
