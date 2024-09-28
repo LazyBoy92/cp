@@ -1,65 +1,38 @@
-#include<iostream>
-#include<vector>
-#define limit 1000000
-using namespace std;
+#include<bits/stdc++.h>
+#define ll long long
+#define limit 1000000000
+#define  vi vector<ll>
 
-int position[limit];
-
-void Sieve(){
-
-    for (int i = 2; i <= limit; i++)
-    {
-        position[1] = -1, position[0] = -1;
-
-        if(position[i] == 0){
-            position[i] = i;
-
-            int j = i*2
-            for (; j <= limit; j+=i){
-                 position[j] = -1;    
-            }
-            
-        }
-    }    
-}
-
-
-
+using  namespace std;
 int main(){
 
+   ll N;
 
-Sieve();
+   cin >> N;
 
-vector<int> x;
+   ll arr[1001];
+   ll c = 1;
+   for(int i = 0; i <= 30;i++){
+      c = pow(3,i);
+      arr[i] = c;
+      
+   }
 
-for (int i = 0; i < 77777; i++)
-{
-    if(position[i] > 0){
-        x.push_back(position[i]);
-    }
-    
-}
-
-int n,t[77777];
-cin >> n;
-for (int l = 0; l < n; l++)
-{
-   cin >> t[l];
-}
-
-for (int p = 0; p < n; p++)
-{
-  cout << x[t[p]-1] <<endl;
-}
-
-
-
-
-
-
-
-
-
+   vi memo;
+   for (int i = 30; i >= 0; i--)
+   {
+      if(N-arr[i] > 0 || N >= arr[i]){
+         memo.push_back(arr[i]);
+         N-=arr[i];
+      }
+   }
+   
+   cout << memo.size() <<endl;
+   sort(memo.begin(),memo.end());
+   for (int i = 0; i < memo.size();i++){
+      cout << memo[i]<< " ";
+   }
+   
 
 
 }
