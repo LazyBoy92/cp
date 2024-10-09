@@ -14,12 +14,14 @@ int main(){
     int n = ceil(sqrt(m.size()));
     int l = 0;
 
-   
+    rep(i,m.size(),n*n){
+        m+='.';
+    }
 
     rep(i,0,n){
         rep(j,0,n){
-            ans[i][j] = m[l];
-            l++;            
+                ans[i][j] = m[l];
+                l++;
         }   
     }
 
@@ -28,17 +30,11 @@ int main(){
 
     rep(i,0,n){
         if((i+1)%2 != 0){
-            rep(j,0,n){
-                 if(ans[i][j] == '\0'){
-                    ans[i][j] = '.';
-            }
+            rep(j,0,n){ 
                 cout << ans[i][j];
             }
         }else{
             for (int j = n-1; j >= 0; j--){
-                    if(ans[i][j] == '\0'){
-                    ans[i][j] = '.';
-            }
                 cout << ans[i][j];
             }
             
@@ -49,7 +45,6 @@ int main(){
    
 
     
-
 
     
 
